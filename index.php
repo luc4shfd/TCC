@@ -32,7 +32,7 @@
     padding: 20px;
     font-size: 25px;
     
-    
+
   }
 
   .container {
