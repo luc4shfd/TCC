@@ -1,0 +1,85 @@
+CREATE DATABASE TCC_etec;
+use TCC_etec; 
+
+create table pessoa (
+codigo_pessoa int(10) not null auto_increment,
+nome varchar (80) default null,
+data_nascimento date default null, 
+logradouro varchar (80) default null,
+numero varchar (80) default null,
+complemento varchar (80),
+cidade varchar (80) default null,
+cep varchar (80) default null,
+telefone varchar (80),
+cpf varchar (14),
+primary key (codigo_pessoa)
+);
+
+create table funcionario (
+codigo_funcionario int (10) not null auto_increment,
+cargo varchar (80) default null,
+data_admissao date default null,
+data_recisao date,
+login varchar (80) default null,
+senha varchar (80) default null, 
+codigo_pessoa int (10) default null,
+primary key (codigo_funcionario),
+key fk_p_f (codigo_pessoa),
+constraint fk_p_f foreign key (codigo_pessoa) references pessoa (codigo_pessoa)
+  );
+  
+  create table gerente_setor (
+matricula int (15) not null, 
+cargo varchar (80) default null, 
+data_admissão date default null,
+data_recisão date,
+login varchar (80) default null,
+senha varchar (80) default null, 
+codigo_pessoa int (10) default null,
+primary key (matricula),
+key fk_p_gs (codigo_pessoa),
+constraint fk_p_gs foreign key (codigo_pessoa) references pessoa (codigo_pessoa)
+);
+
+create table administrador_empresa (
+codigo_administrador int(10) not null auto_increment,
+login varchar (80) default null,
+senha varchar (80) default null,
+codigo_pessoa int (10) default null,
+primary key (codigo_administrador),  
+key fk_p_ae (codigo_pessoa),
+constraint fk_p_ae foreign key (codigo_pessoa) references pessoa (codigo_pessoa)
+);
+
+create table comprador (
+codigo_comprador int(10) not null,
+descricao varchar (80) default null,
+codigo_pessoa int (10) default null,
+primary key (codigo_comprador), 
+key fk_p_c (codigo_pessoa),
+constraint fk_p_c foreign key (codigo_pessoa) references pessoa (codigo_pessoa)
+);
+
+
+create table produto (
+codigo_produto int (10) not null auto_increment,
+descricao varchar (80) default null,
+data_chegada date default null,
+data_saida date,
+data_vistoria date,
+categoria varchar (80), 
+primary key (codigo_produto)
+);
+
+create table venda (
+codigo_venda int (10) not null auto_increment,
+data_venda date default null,
+quantidade_produto int (50),
+codigo_comprador int (10) default null,
+codigo_produto int (10) default null,
+primary key (codigo_venda),
+key fk_pr_v (codigo_produto),
+constraint fk_pr_v foreign key (codigo_produto) references produto (codigo_produto),
+key fk_co_v (codigo_comprador),
+constraint fk_co_v foreign key (codigo_comprador) references comprador (codigo_comprador)
+);
