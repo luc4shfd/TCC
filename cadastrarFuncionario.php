@@ -1,6 +1,6 @@
 <div class="form-container-funcionario">
     
-    <form action="salvar_produto.php" method="POST">
+    <form action="salvar_funcionario.php" method="POST">
     
         <label>Cargo</label>
         <input type="text"  name="descricao" required>
