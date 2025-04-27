@@ -2,10 +2,10 @@
     
     <form action="salvar_produto.php" method="POST">
     
-        <label >Cargo</label>
+        <label>Cargo</label>
         <input type="text"  name="descricao" required>
 
-        <label">Data de Admissão:</label>
+        <label>Data de Admissão:</label>
         <input type="date"  name="data_chegada">
 
         <label >Data de Recisão:</label>
